@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -5,26 +6,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="login.component.css">
   <title>Muse Connect - Signin</title>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const form = document.querySelector('.form');
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const username = document.querySelector('.inputbox input[type="text"]').value;
+        const password = document.querySelector('.inputbox input[type="password"]').value;
+        const storedUsername = localStorage.getItem('username');
+        const storedPassword = localStorage.getItem('password');
+        if(username === storedUsername && password === storedPassword) {
+          window.location.href = 'users'; // Redirect to user list page
+        } else {
+          alert('Invalid credentials. Please try again.');
+        }
+      });
+    });
+  </script>
 </head>
 <body>
   <div class="box">
     <div class="form">
       <h2>Sign in</h2>
-      <div class="inputbox">
-        <input type="text" required="required">
-        <span>Username</span>
-        <i></i>
-      </div>
-      <div class="inputbox">
-        <input type="password" required="required">
-        <span>Password</span>
-        <i></i>
-      </div>
-      <div class="links">
-        <a href="#">Forgot Password</a>
-        <a href="#">Signup</a>
-      </div>
-      <input type="submit" value="Login">
+      <form>
+        <div class="inputbox">
+          <input type="text" required="required">
+          <span>Username</span>
+          <i></i>
+        </div>
+        <div class="inputbox">
+          <input type="password" required="required">
+          <span>Password</span>
+          <i></i>
+        </div>
+        <div class="links">
+          <a href="#">Forgot Password</a>
+          <a href="signup">Signup</a> <!-- Updated link for signing up -->
+        </div>
+        <input type="submit" value="Login">
+      </form>
     </div>
   </div>
 </body>
